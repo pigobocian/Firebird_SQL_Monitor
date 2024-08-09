@@ -41,6 +41,8 @@ namespace Firebird_SQL_Monitor
                 string fieldName = reader.GetName(i);
                 var column = listView1.Columns.Add(fieldName);
             }
+
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void RefreshForm()
