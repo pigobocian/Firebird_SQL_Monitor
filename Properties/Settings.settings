@@ -1,0 +1,22 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Firebird_SQL_Monitor.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Dsn=testfb1;Driver={Firebird/InterBase(r) driver};dbname=C:\praca\bazypcb\warowny\WAROWNY.GDB;charset=WIN1250;uid=SYSDBA;client=C:\Program Files\Firebird\Firebird_3_0\fbclient.dll&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.Odbc&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Dsn=testfb1;Driver={Firebird/InterBase(r) driver};dbname=C:\praca\bazypcb\warowny\WAROWNY.GDB;charset=WIN1250;uid=SYSDBA;client=C:\Program Files\Firebird\Firebird_3_0\fbclient.dll</Value>
+    </Setting>
+    <Setting Name="ConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Dsn=aaa;Driver={Firebird/InterBase(r) driver};dbname=c:\praca\bazypcb\warowny\WAROWNY.GDB;charset=WIN1250;pwd=masterkey;uid=SYSDBA;client=C:\Program Files\Firebird\Firebird_3_0\fbclient.dll&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.Odbc&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Dsn=aaa;Driver={Firebird/InterBase(r) driver};dbname=c:\praca\bazypcb\warowny\WAROWNY.GDB;charset=WIN1250;pwd=masterkey;uid=SYSDBA;client=C:\Program Files\Firebird\Firebird_3_0\fbclient.dll</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
