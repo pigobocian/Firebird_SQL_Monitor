@@ -147,7 +147,7 @@ namespace Firebird_SQL_Monitor
             {
                 // Sprawdzam czy jako SQL nie podano przypadkiem nazwy pliku
                 // jeśli wkazany plik istnieje - należy go wczytać
-                sql = ini.Get(INI_SQL, "select * from akwizytor");
+                sql = ini.Get(INI_SQL, "select 'a','b',1,2,3,4 from RDB$DATABASE");
                 if (File.Exists(sql))
                 {
                     sql = File.ReadAllText(sql);
