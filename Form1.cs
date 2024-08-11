@@ -40,9 +40,8 @@ namespace Firebird_SQL_Monitor
             {
                 string fieldName = reader.GetName(i);
                 var column = listView1.Columns.Add(fieldName);
+                //column.Width = -2;
             }
-
-            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void RefreshForm()
@@ -68,6 +67,8 @@ namespace Firebird_SQL_Monitor
                     }
                 }
             }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             listView1.EndUpdate();
         }
 
@@ -85,6 +86,12 @@ namespace Firebird_SQL_Monitor
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label1.Text = DateTime.Now.ToString();
+            RefreshForm();
         }
     }
 }

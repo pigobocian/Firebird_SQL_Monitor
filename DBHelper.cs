@@ -11,16 +11,22 @@ namespace Firebird_SQL_Monitor
     {
         FbConnection fbConnection;
         String connStr = "";
-        
+
 
         public DBHelper(Konfiguracja cfg)
-        { 
-            connStr += "datasource=" + cfg.GetDBHost() + ";";
-            connStr += "port=" + cfg.GetDBPort().ToString() + ":";
-            connStr += "database=" + cfg.GetDBName() + ";";
-            connStr += "user id=" + cfg.GetDBUserName() + ";";
-            connStr += "password=" + cfg.GetDBPassword() + ";";
-            connStr += "charset=" + cfg.GetDBEncoding();
+        {
+            connStr = "User=" + cfg.GetDBUserName() + ";" +
+                      "Password=" + cfg.GetDBPassword() + ";" +
+                      "Database=" + cfg.GetDBName() + ";" +
+                      "DataSource=" + cfg.GetDBHost() + ";" +
+                      "Port=" + cfg.GetDBPort().ToString() + ";" +
+                      "Dialect=3;" +
+                      "Charset=" + cfg.GetDBEncoding() + ";" +
+                      "Connection lifetime=15;" +
+                      "Pooling=true;" +
+                      "MinPoolSize=0;" +
+                      "MaxPoolSize=50;" +
+                      "ServerType=0;";
         }
 
         public bool Connect()
@@ -28,11 +34,12 @@ namespace Firebird_SQL_Monitor
             bool result = false;
             try
             {
-                string tmpstr = "User=SYSDBA;Password=masterkey;Database=c:\\praca\\bazypcb\\wysokinski\\WYSOKINSKI.gdb;DataSource=127.0.0.1;Port=3050;Dialect=3;Charset=WIN1250;Role=;Connection lifetime=15;Pooling=true;MinPoolSize=0;MaxPoolSize=50;Packet Size=8192;\r\nServerType=0;";
-                fbConnection = new FbConnection(tmpstr);
+                fbConnection = new FbConnection(connStr);
                 fbConnection.Open();
                 result = true;
-            } catch (FbException e) {
+            }
+            catch (FbException e)
+            {
                 Console.WriteLine(e.Message);
             }
             return result;

@@ -145,7 +145,14 @@ namespace Firebird_SQL_Monitor
             var ini = new MyIniFile(exePath + INI_FILENAME);
             if (ini.Read())
             {
+                // Sprawdzam czy jako SQL nie podano przypadkiem nazwy pliku
+                // jeśli wkazany plik istnieje - należy go wczytać
                 sql = ini.Get(INI_SQL, "select * from akwizytor");
+                if (File.Exists(sql))
+                {
+                    sql = File.ReadAllText(sql);
+                }
+
                 dbHost = ini.Get(INI_DBHOST, "");
                 String buf = ini.Get(INI_DBPORT, "");
                 if (buf != null && buf != "") dbPort = Int32.Parse(buf);
