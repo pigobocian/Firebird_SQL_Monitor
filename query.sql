@@ -1,15 +1,16 @@
 SELECT
-x.MON$REMOTE_HOST,
-substring(x.MON$REMOTE_ADDRESS from 1 for position('/' in x.MON$REMOTE_ADDRESS)-1),
+upper(x.MON$REMOTE_HOST) as "Nazwahosta",
+substring(x.MON$REMOTE_ADDRESS from 1 for position('/' in x.MON$REMOTE_ADDRESS)-1) as "Adres_IP",
+(SELECT count(*) from MON$ATTACHMENTS ma where upper(ma.MON$REMOTE_HOST) = upper(x.MON$REMOTE_HOST)) as "Connection_Count",
 sum(MEM.MON$MEMORY_USED / (1024*1024) ) as "MemCurrentSQL_MB",
 sum(mu.MON$MEMORY_USED) / (1024*1024*1024) as "MemUsed_GB",
-sum(mu.MON$MEMORY_ALLOCATED) / (1024*1024*1024) as "MemAllocated_GB",
+sum(mu.MON$MEMORY_ALLOCATED) / (1024*1024*1024) as "MaxMemAllocated_GB",
 sum(mu.MON$MAX_MEMORY_USED) / (1024*1024*1024) as "MaxMemUsed_GB"
 
 FROM MON$MEMORY_USAGE MEM
 NATURAL JOIN MON$STATEMENTS STMT
 inner join MON$ATTACHMENTS x  on x.MON$ATTACHMENT_ID = stmt.MON$ATTACHMENT_ID
 inner join MON$MEMORY_USAGE mu on mu.MON$STAT_ID = x.MON$STAT_ID
-group by 1,2
+group by 1,2,3
 --ORDER BY MEM.MON$MEMORY_USED DESC
 --FETCH FIRST 10 ROWS ONLY

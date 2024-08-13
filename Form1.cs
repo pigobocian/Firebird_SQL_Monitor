@@ -14,6 +14,10 @@ namespace Firebird_SQL_Monitor
     public partial class Form1 : Form
     {
         private bool firstRun = true;
+        private float topMaxMemUsed = 0;
+        private float topMaxMemAllocated = 0;
+        private int topConnectionCount = 0;
+
 
         public Form1()
         {
@@ -36,7 +40,7 @@ namespace Firebird_SQL_Monitor
         {
             listView1.Columns.Clear();
 
-            for(int i=0; i < reader.FieldCount; i++)
+            for (int i = 0; i < reader.FieldCount; i++)
             {
                 string fieldName = reader.GetName(i);
                 var column = listView1.Columns.Add(fieldName);
@@ -54,17 +58,38 @@ namespace Firebird_SQL_Monitor
             {
                 using (FbDataReader reader = cmd.ExecuteReader())
                 {
+                    float memCurrent = 0;
+                    float memUsed = 0;
+                    float maxMemAllocated = 0;
+                    float maxMemUsed = 0;
+                    int connectionCount = 0;
+
                     CreateColumns(reader);
                     while (reader.Read())
                     {
                         ListViewItem item = listView1.Items.Add(reader.GetString(0)); // remote host
                         item.SubItems.Add(reader.GetString(1)); // adres IP
-                        item.SubItems.Add(reader.GetFloat(2).ToString()); // Current SQL in MB
-                        item.SubItems.Add(reader.GetFloat(3).ToString()); // Mem used in GB
-                        item.SubItems.Add(reader.GetFloat(4).ToString()); // Mem alocated in GB
-                        item.SubItems.Add(reader.GetFloat(5).ToString()); // Max mem used in GB
-                       
+                        item.SubItems.Add(reader.GetFloat(2).ToString()); // Count of connections for host
+                        item.SubItems.Add(reader.GetFloat(3).ToString()); // Current SQL in MB
+                        item.SubItems.Add(reader.GetFloat(4).ToString()); // Mem used in GB
+                        item.SubItems.Add(reader.GetFloat(5).ToString()); // Max mem alocated in GB
+                        item.SubItems.Add(reader.GetFloat(6).ToString()); // Max mem used in GB
+
+                        connectionCount += reader.GetInt32(2);
+                        memCurrent += reader.GetFloat(3);
+                        memUsed += reader.GetFloat(4);
+                        maxMemAllocated += reader.GetFloat(5);
+                        maxMemUsed += reader.GetFloat(6);
+                        if (connectionCount > topConnectionCount) topConnectionCount = connectionCount;
+                        if (maxMemAllocated > topMaxMemAllocated) topMaxMemAllocated = maxMemAllocated;
+                        if (maxMemUsed > topMaxMemUsed) topMaxMemUsed = maxMemUsed;
                     }
+
+                    labelConnectionCount.Text = connectionCount.ToString() + "  top: " + topConnectionCount.ToString();
+                    labelMemCurrent.Text = memCurrent.ToString() + " MB";
+                    labelMemUsed.Text = memUsed.ToString() + " GB";
+                    labelMemAllocated.Text = maxMemAllocated.ToString() + " GB  top: " + topMaxMemAllocated.ToString() + " GB";
+                    labelMaxMemUsed.Text = maxMemUsed.ToString() + " GB  top: " + topMaxMemUsed.ToString() + " GB";
                 }
             }
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);

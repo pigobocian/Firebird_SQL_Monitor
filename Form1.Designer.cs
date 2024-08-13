@@ -35,22 +35,38 @@
             "wwww",
             "eeeefff"}, -1);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.buttonKonfiguracja = new System.Windows.Forms.Button();
+            this.labelMaxMemUsed = new System.Windows.Forms.Label();
+            this.labelMemAllocated = new System.Windows.Forms.Label();
+            this.labelMemUsed = new System.Windows.Forms.Label();
+            this.labelMemCurrent = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelConnectionCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.labelConnectionCount);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.labelMaxMemUsed);
+            this.panel1.Controls.Add(this.labelMemAllocated);
+            this.panel1.Controls.Add(this.labelMemUsed);
+            this.panel1.Controls.Add(this.labelMemCurrent);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.buttonKonfiguracja);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 350);
             this.panel1.Name = "panel1";
@@ -58,24 +74,86 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // button1
+            // labelMaxMemUsed
             // 
-            this.button1.Location = new System.Drawing.Point(356, 34);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.labelMaxMemUsed.AutoSize = true;
+            this.labelMaxMemUsed.Location = new System.Drawing.Point(129, 78);
+            this.labelMaxMemUsed.Name = "labelMaxMemUsed";
+            this.labelMaxMemUsed.Size = new System.Drawing.Size(25, 13);
+            this.labelMaxMemUsed.TabIndex = 10;
+            this.labelMaxMemUsed.Text = "000";
             // 
-            // buttonKonfiguracja
+            // labelMemAllocated
             // 
-            this.buttonKonfiguracja.Location = new System.Drawing.Point(12, 12);
-            this.buttonKonfiguracja.Name = "buttonKonfiguracja";
-            this.buttonKonfiguracja.Size = new System.Drawing.Size(75, 23);
-            this.buttonKonfiguracja.TabIndex = 0;
-            this.buttonKonfiguracja.Text = "Konfiguracja";
-            this.buttonKonfiguracja.UseVisualStyleBackColor = true;
+            this.labelMemAllocated.AutoSize = true;
+            this.labelMemAllocated.Location = new System.Drawing.Point(129, 53);
+            this.labelMemAllocated.Name = "labelMemAllocated";
+            this.labelMemAllocated.Size = new System.Drawing.Size(25, 13);
+            this.labelMemAllocated.TabIndex = 9;
+            this.labelMemAllocated.Text = "000";
+            // 
+            // labelMemUsed
+            // 
+            this.labelMemUsed.AutoSize = true;
+            this.labelMemUsed.Location = new System.Drawing.Point(129, 28);
+            this.labelMemUsed.Name = "labelMemUsed";
+            this.labelMemUsed.Size = new System.Drawing.Size(25, 13);
+            this.labelMemUsed.TabIndex = 8;
+            this.labelMemUsed.Text = "000";
+            // 
+            // labelMemCurrent
+            // 
+            this.labelMemCurrent.AutoSize = true;
+            this.labelMemCurrent.Location = new System.Drawing.Point(129, 3);
+            this.labelMemCurrent.Name = "labelMemCurrent";
+            this.labelMemCurrent.Size = new System.Drawing.Size(25, 13);
+            this.labelMemCurrent.TabIndex = 7;
+            this.labelMemCurrent.Text = "000";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(22, 78);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Max mem used";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(22, 53);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Max mem allocated";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(22, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Mem used";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(22, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Mem current";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(375, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
             // 
             // listView1
             // 
@@ -118,14 +196,23 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label1
+            // label6
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(224, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Connection count";
+            // 
+            // labelConnectionCount
+            // 
+            this.labelConnectionCount.AutoSize = true;
+            this.labelConnectionCount.Location = new System.Drawing.Point(321, 3);
+            this.labelConnectionCount.Name = "labelConnectionCount";
+            this.labelConnectionCount.Size = new System.Drawing.Size(25, 13);
+            this.labelConnectionCount.TabIndex = 12;
+            this.labelConnectionCount.Text = "000";
             // 
             // Form1
             // 
@@ -146,14 +233,22 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button buttonKonfiguracja;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelMaxMemUsed;
+        private System.Windows.Forms.Label labelMemAllocated;
+        private System.Windows.Forms.Label labelMemUsed;
+        private System.Windows.Forms.Label labelMemCurrent;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelConnectionCount;
+        private System.Windows.Forms.Label label6;
     }
 }
 
