@@ -64,6 +64,7 @@ namespace Firebird_SQL_Monitor
                     float maxMemUsed = 0;
                     int connectionCount = 0;
 
+
                     CreateColumns(reader);
                     while (reader.Read())
                     {
