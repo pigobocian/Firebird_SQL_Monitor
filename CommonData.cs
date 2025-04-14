@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Forms;
 
-namespace Firebird_SQL_Monitor
+namespace FirebirdSQLMonitor
 {
     public class CommonData
     {
@@ -14,5 +10,7 @@ namespace Firebird_SQL_Monitor
         public static DBHelper GetDBHelper() { return dbHelper; }
         public static Konfiguracja GetKonfiguracja() { return konfiguracja; }
 
-    }
+        public static ListBox log;
+
+	}
 }

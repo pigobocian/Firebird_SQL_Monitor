@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Firebird_SQL_Monitor
+namespace FirebirdSQLMonitor
 {
     /// <summary>
     /// Klasa obsługująca pliki INI, bez podziału na sekcje
