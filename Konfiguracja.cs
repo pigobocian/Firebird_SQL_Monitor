@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Firebird_SQL_Monitor;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -11,7 +12,7 @@ namespace FirebirdSQLMonitor
 		/// <summary>
 		/// Klucze używane w pliku INI
 		/// </summary>
-		public const String INI_SQL = "SQL";
+		public const String INI_MAIN_SQL = "MAIN_SQL";
 		public const String INI_DBHOST = "DBHOST";
 		public const String INI_DBPORT = "DBPORT";
 		public const String INI_DBFILENAME = "DBFILENAME";
@@ -30,7 +31,19 @@ namespace FirebirdSQLMonitor
 		private String dbPassword;
 		private String dbEncoding;
 
-		public void SetSQL(String sql)
+		private static Konfiguracja instance = null;
+
+		public static Konfiguracja GetInstance()
+		{
+			if (instance == null)
+			{
+				instance = new Konfiguracja();
+			}
+			return instance;
+    }
+
+
+    public void SetSQL(String sql)
 		{
 			this.sql = sql;
 		}
@@ -118,7 +131,7 @@ namespace FirebirdSQLMonitor
 				var ini = new MyIniFile(exePath + INI_FILENAME);
 				if (ini.Read())
 				{
-					ini.Add(INI_SQL, sql);
+					ini.Add(INI_MAIN_SQL, sql);
 					ini.Add(INI_DBHOST, this.dbHost);
 					ini.Add(INI_DBPORT, this.dbPort.ToString());
 					ini.Add(INI_DBFILENAME, this.dbFileName);
@@ -128,29 +141,9 @@ namespace FirebirdSQLMonitor
 					result = ini.Save();
 				}
 			}
-			catch (ArgumentNullException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (UnauthorizedAccessException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (FileNotFoundException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (IOException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (System.Security.SecurityException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
 			catch (Exception e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
+        GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
 			}
 			return result;
 		}
@@ -172,7 +165,7 @@ namespace FirebirdSQLMonitor
 				{
 					// Sprawdzam czy jako SQL nie podano przypadkiem nazwy pliku
 					// jeśli wkazany plik istnieje - należy go wczytać
-					sql = ini.Get(INI_SQL, "select 'a','b',1,2,3,4 from RDB$DATABASE");
+					sql = ini.Get(INI_MAIN_SQL, "select 'a','b',1,2,3,4 from RDB$DATABASE");
 					if (File.Exists(sql))
 					{
 						sql = File.ReadAllText(sql);
@@ -188,29 +181,9 @@ namespace FirebirdSQLMonitor
 					result = true;
 				}
 			}
-			catch (ArgumentNullException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (UnauthorizedAccessException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (FileNotFoundException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (IOException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (System.Security.SecurityException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
 			catch (Exception e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
+        GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
 			}
 			return result;
 		}

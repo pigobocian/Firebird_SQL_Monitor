@@ -1,4 +1,5 @@
-﻿using FirebirdSql.Data.FirebirdClient;
+﻿using Firebird_SQL_Monitor;
+using FirebirdSql.Data.FirebirdClient;
 using System;
 using System.Windows.Forms;
 
@@ -19,21 +20,26 @@ namespace FirebirdSQLMonitor
 
 		private void InitApp()
 		{
-			try
+			GlobalLog log = GlobalLog.GetInstance();
+			log.SetListBox(this.listBoxErrorLog);
+
+      try
 			{
 				if (firstRun)
 				{
-					firstRun = false;
-					CommonData.konfiguracja = new Konfiguracja();
-					CommonData.konfiguracja.LoadConfig();
-					CommonData.dbHelper = new DBHelper(CommonData.konfiguracja);
-					CommonData.dbHelper.Connect();
-					CommonData.log = this.listBoxErrorLog;
-				}
+          firstRun = false;
+					Konfiguracja konfiguracja = Konfiguracja.GetInstance();
+					konfiguracja.LoadConfig();
+					DBHelper dbHelper = DBHelper.GetInstance();
+					if (dbHelper.Connect())
+					{
+						timer1.Enabled = true;
+					}					
+        }
 			}
 			catch (Exception e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
+				GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
 			}
 		}
 
@@ -55,8 +61,10 @@ namespace FirebirdSQLMonitor
 			listView1.Items.Clear();
 			try
 			{
-				string sql = CommonData.GetKonfiguracja().GetSQL();
-				using (FbCommand cmd = CommonData.GetDBHelper().GetSQLCommand(sql))
+				Konfiguracja konfiguracja = Konfiguracja.GetInstance();
+        string sql = konfiguracja.GetSQL();
+				DBHelper dbHelper = DBHelper.GetInstance();
+        using (FbCommand cmd = dbHelper.GetSQLCommand(sql))
 				{
 					using (FbDataReader reader = cmd.ExecuteReader())
 					{
@@ -69,9 +77,12 @@ namespace FirebirdSQLMonitor
 						CreateColumns(reader);
 						while (reader.Read())
 						{
-							ListViewItem item = listView1.Items.Add(reader.GetString(0)); // remote host
-							item.SubItems.Add(reader.GetString(1)); // adres IP
-							item.SubItems.Add(reader.GetFloat(2).ToString()); // Count of connections for host
+							string dbgStr = reader.GetString(0);
+              ListViewItem item = listView1.Items.Add(dbgStr); // remote host
+							dbgStr = reader.GetString(1);
+              item.SubItems.Add(dbgStr); // adres IP
+              dbgStr = reader.GetString(2);
+              item.SubItems.Add(reader.GetFloat(2).ToString()); // Count of connections for host
 							item.SubItems.Add(reader.GetFloat(3).ToString()); // Current SQL in MB
 							item.SubItems.Add(reader.GetFloat(4).ToString()); // Mem used in GB
 							item.SubItems.Add(reader.GetFloat(5).ToString()); // Max mem alocated in GB
@@ -99,7 +110,7 @@ namespace FirebirdSQLMonitor
 			}
 			catch (Exception e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
+        GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
 			}
 			finally
 			{

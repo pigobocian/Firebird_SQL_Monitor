@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Firebird_SQL_Monitor;
 using FirebirdSql.Data.FirebirdClient;
+using System;
 
 namespace FirebirdSQLMonitor
 {
@@ -8,7 +9,9 @@ namespace FirebirdSQLMonitor
 		FbConnection fbConnection;
 		String connStr = "";
 
-		public DBHelper(Konfiguracja cfg)
+		private static DBHelper instance = null;
+
+    public DBHelper(Konfiguracja cfg)
 		{
 			connStr = "User=" + cfg.GetDBUserName() + ";" +
 								"Password=" + cfg.GetDBPassword() + ";" +
@@ -24,39 +27,50 @@ namespace FirebirdSQLMonitor
 								"ServerType=0;";
 		}
 
-		public bool Connect()
+		public static DBHelper GetInstance()
+		{
+			Konfiguracja configuration = Konfiguracja.GetInstance();
+
+      if (instance == null)
+			{
+				instance = new DBHelper(configuration);
+			}
+			return instance;
+    }
+
+    public bool Connect()
 		{
 			bool result = false;
 			try
 			{
 				fbConnection = new FbConnection(connStr);
 				fbConnection.Open();
-				result = true;
-			}
+				string dbgStr = fbConnection.ServerVersion;
+        result = IsOpen();
+      }
 			catch (FbException e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
+        GlobalLog.LogMessage(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
 			}
-			catch (ArgumentException e)
+			catch (Exception e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
+        GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
 			}
-			catch (ObjectDisposedException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (InvalidOperationException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (SystemException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
+			
 			return result;
 		}
 
-		public void Close()
+		bool IsOpen()
+		{
+			bool result = false;
+			if (fbConnection != null)
+			{
+				result = fbConnection.State == System.Data.ConnectionState.Open;
+			}
+			return result;
+    }
+
+    public void Close()
 		{
 			try
 			{
@@ -64,23 +78,11 @@ namespace FirebirdSQLMonitor
 			}
 			catch (FbException e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
+        GlobalLog.LogMessage(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
 			}
-			catch (ArgumentException e)
+			catch (Exception e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (ObjectDisposedException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (InvalidOperationException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (SystemException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
+        GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
 			}
 		}
 
@@ -93,23 +95,11 @@ namespace FirebirdSQLMonitor
 			}
 			catch (FbException e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
+        GlobalLog.LogMessage(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
 			}
-			catch (ArgumentException e)
+			catch (Exception e)
 			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (ObjectDisposedException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (InvalidOperationException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
-			}
-			catch (SystemException e)
-			{
-				CommonData.log.Items.Add(e.GetType().Name + " - " + e.Message);
+        GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
 			}
 			return fbCommand;
 		}
