@@ -13,7 +13,8 @@ namespace FirebirdSQLMonitor
 		/// Klucze używane w pliku INI
 		/// </summary>
 		public const String INI_MAIN_SQL = "MAIN_SQL";
-		public const String INI_DBHOST = "DBHOST";
+		public const string INI_USERS_SQL = "USERS_SQL";s
+    public const String INI_DBHOST = "DBHOST";
 		public const String INI_DBPORT = "DBPORT";
 		public const String INI_DBFILENAME = "DBFILENAME";
 		public const String INI_DBUSERNAME = "DBUSERNAME";
@@ -33,7 +34,18 @@ namespace FirebirdSQLMonitor
 
 		private static Konfiguracja instance = null;
 
-		public static Konfiguracja GetInstance()
+    // Prywatny konstruktor - singleton
+    private Konfiguracja()
+		{
+			// Ustawienia domyślne
+			sql = "select 'a','b',1,2,3,4 from RDB$DATABASE";
+			dbHost = "localhost";
+			dbPort = 3050;
+			dbFileName = ""; 
+		}
+
+
+    public static Konfiguracja GetInstance()
 		{
 			if (instance == null)
 			{

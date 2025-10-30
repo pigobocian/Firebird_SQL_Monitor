@@ -11,7 +11,7 @@ namespace FirebirdSQLMonitor
 
 		private static DBHelper instance = null;
 
-    public DBHelper(Konfiguracja cfg)
+    private DBHelper(Konfiguracja cfg)
 		{
 			connStr = "User=" + cfg.GetDBUserName() + ";" +
 								"Password=" + cfg.GetDBPassword() + ";" +

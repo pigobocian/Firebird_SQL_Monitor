@@ -11,7 +11,10 @@ namespace Firebird_SQL_Monitor
   {
     private static ListBox listBox = null;
     private static GlobalLog instance = null;
-    
+
+    // Prywatny konstruktor - singleton
+    private GlobalLog() { }
+
     public static GlobalLog GetInstance()
     {
       if (instance == null)
