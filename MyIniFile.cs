@@ -9,8 +9,8 @@ namespace FirebirdSQLMonitor
     /// </summary>
     public class MyIniFile
     {
-        private Dictionary<string, string> items;
-        private string fileName;
+        private Dictionary<string, string> Items;
+        private string FileName;
 
         /// <summary>
         /// Inicjuje obiekt klasy, nazwa podana w parametrze jest używana przez metody Save i Read
@@ -18,8 +18,8 @@ namespace FirebirdSQLMonitor
         /// <param name="fileName">Nazwa pliku</param>
         public MyIniFile(string fileName)
         {
-            this.fileName = fileName;
-            items = new Dictionary<string, string>();
+            this.FileName = fileName;
+            Items = new Dictionary<string, string>();
         }
 
 
@@ -30,9 +30,9 @@ namespace FirebirdSQLMonitor
         /// <param name="value">Wartość klucza</param>
         public void Add(string key, string value)
         {
-            if (items.ContainsKey(key.ToUpper()))
+            if (Items.ContainsKey(key.ToUpper()))
             {
-                this.items[key.ToUpper()] = value;
+                this.Items[key.ToUpper()] = value;
             }
             else
             {
@@ -51,9 +51,9 @@ namespace FirebirdSQLMonitor
         {
             string result = defaultValue;
 
-            if (items.ContainsKey(key.ToUpper())) result = this.items[key.ToUpper()];
+            if (Items.ContainsKey(key.ToUpper())) result = this.Items[key.ToUpper()];
             else
-                items.Add(key.ToUpper(), defaultValue); // dopisanie wartości domyślnej
+                Items.Add(key.ToUpper(), defaultValue); // dopisanie wartości domyślnej
 
             return result;
         }
@@ -64,7 +64,7 @@ namespace FirebirdSQLMonitor
         /// <param name="comment">Treść komentarza</param>
         public void AddComment(string comment)
         {
-            items.Add(";", comment);
+            Items.Add(";", comment);
         }
 
         /// <summary>
@@ -76,9 +76,9 @@ namespace FirebirdSQLMonitor
         {
             bool result = false;
 
-            using (StreamWriter writer = new StreamWriter(fileName))
+            using (StreamWriter writer = new StreamWriter(FileName))
             {
-                foreach (KeyValuePair<string, string> item in items)
+                foreach (KeyValuePair<string, string> item in Items)
                 {
                     string line;
                     string key = item.Key.ToUpper();
@@ -111,9 +111,9 @@ namespace FirebirdSQLMonitor
         {
             bool result = false;
 
-            items.Clear();
+            Items.Clear();
 
-            using (StreamReader reader = new StreamReader(fileName))
+            using (StreamReader reader = new StreamReader(FileName))
             {
                 string line = reader.ReadLine().Trim();
                 while ((line != null) && (line != ""))
@@ -122,7 +122,7 @@ namespace FirebirdSQLMonitor
                     {
                         string key = line.Substring(0, 1);
                         string value = line.Substring(2).Trim();
-                        items.Add(key, value);
+                        Items.Add(key, value);
                     }
                     else
                     {
@@ -131,7 +131,7 @@ namespace FirebirdSQLMonitor
                         {
                             string key = line.Substring(0, idx).Trim();
                             string value = line.Substring(idx + 1).Trim();
-                            items.Add(key, value);
+                            Items.Add(key, value);
                         }
                     }
                     // wszystkie inne kombinacje są pomijane

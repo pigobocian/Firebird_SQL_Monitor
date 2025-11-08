@@ -29,31 +29,31 @@
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+      System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "sdaf",
             "qqqqqqqqq",
             "wwww",
             "eeeefff"}, -1);
       this.panel1 = new System.Windows.Forms.Panel();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
-      this.buttonCheckIntervalDown = new System.Windows.Forms.Button();
-      this.buttonCheckIntervalUp = new System.Windows.Forms.Button();
-      this.labelCheckInterval = new System.Windows.Forms.Label();
-      this.labelConnectionCount = new System.Windows.Forms.Label();
+      this.ButtonCheckIntervalDown = new System.Windows.Forms.Button();
+      this.ButtonCheckIntervalUp = new System.Windows.Forms.Button();
+      this.LabelCheckInterval = new System.Windows.Forms.Label();
+      this.LabelConnectionCount = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
-      this.labelMaxMemUsed = new System.Windows.Forms.Label();
-      this.labelMemAllocated = new System.Windows.Forms.Label();
-      this.labelMemUsed = new System.Windows.Forms.Label();
-      this.labelMemCurrent = new System.Windows.Forms.Label();
+      this.LabelMaxMemUsed = new System.Windows.Forms.Label();
+      this.LabelMemAllocated = new System.Windows.Forms.Label();
+      this.LabelMemUsed = new System.Windows.Forms.Label();
+      this.LabelMemCurrent = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
-      this.label1 = new System.Windows.Forms.Label();
-      this.timer1 = new System.Windows.Forms.Timer(this.components);
+      this.Label1 = new System.Windows.Forms.Label();
+      this.Timer1 = new System.Windows.Forms.Timer(this.components);
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPageFirebirdData = new System.Windows.Forms.TabPage();
-      this.listView1 = new System.Windows.Forms.ListView();
+      this.ListView1 = new System.Windows.Forms.ListView();
       this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,29 +69,28 @@
       // panel1
       // 
       this.panel1.Controls.Add(this.groupBox1);
-      this.panel1.Controls.Add(this.labelConnectionCount);
+      this.panel1.Controls.Add(this.LabelConnectionCount);
       this.panel1.Controls.Add(this.label6);
-      this.panel1.Controls.Add(this.labelMaxMemUsed);
-      this.panel1.Controls.Add(this.labelMemAllocated);
-      this.panel1.Controls.Add(this.labelMemUsed);
-      this.panel1.Controls.Add(this.labelMemCurrent);
+      this.panel1.Controls.Add(this.LabelMaxMemUsed);
+      this.panel1.Controls.Add(this.LabelMemAllocated);
+      this.panel1.Controls.Add(this.LabelMemUsed);
+      this.panel1.Controls.Add(this.LabelMemCurrent);
       this.panel1.Controls.Add(this.label5);
       this.panel1.Controls.Add(this.label4);
       this.panel1.Controls.Add(this.label3);
       this.panel1.Controls.Add(this.label2);
-      this.panel1.Controls.Add(this.label1);
+      this.panel1.Controls.Add(this.Label1);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.panel1.Location = new System.Drawing.Point(0, 350);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(756, 100);
       this.panel1.TabIndex = 0;
-      this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
       // 
       // groupBox1
       // 
-      this.groupBox1.Controls.Add(this.buttonCheckIntervalDown);
-      this.groupBox1.Controls.Add(this.buttonCheckIntervalUp);
-      this.groupBox1.Controls.Add(this.labelCheckInterval);
+      this.groupBox1.Controls.Add(this.ButtonCheckIntervalDown);
+      this.groupBox1.Controls.Add(this.ButtonCheckIntervalUp);
+      this.groupBox1.Controls.Add(this.LabelCheckInterval);
       this.groupBox1.Location = new System.Drawing.Point(259, 28);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Size = new System.Drawing.Size(202, 47);
@@ -99,43 +98,43 @@
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Częstotliwość sprawdzania";
       // 
-      // buttonCheckIntervalDown
+      // ButtonCheckIntervalDown
       // 
-      this.buttonCheckIntervalDown.Location = new System.Drawing.Point(137, 18);
-      this.buttonCheckIntervalDown.Name = "buttonCheckIntervalDown";
-      this.buttonCheckIntervalDown.Size = new System.Drawing.Size(42, 23);
-      this.buttonCheckIntervalDown.TabIndex = 2;
-      this.buttonCheckIntervalDown.Text = "-1";
-      this.buttonCheckIntervalDown.UseVisualStyleBackColor = true;
-      this.buttonCheckIntervalDown.Click += new System.EventHandler(this.buttonCheckIntervalDown_Click);
+      this.ButtonCheckIntervalDown.Location = new System.Drawing.Point(137, 18);
+      this.ButtonCheckIntervalDown.Name = "ButtonCheckIntervalDown";
+      this.ButtonCheckIntervalDown.Size = new System.Drawing.Size(42, 23);
+      this.ButtonCheckIntervalDown.TabIndex = 2;
+      this.ButtonCheckIntervalDown.Text = "-1";
+      this.ButtonCheckIntervalDown.UseVisualStyleBackColor = true;
+      this.ButtonCheckIntervalDown.Click += new System.EventHandler(this.ButtonCheckIntervalDown_Click);
       // 
-      // buttonCheckIntervalUp
+      // ButtonCheckIntervalUp
       // 
-      this.buttonCheckIntervalUp.Location = new System.Drawing.Point(89, 18);
-      this.buttonCheckIntervalUp.Name = "buttonCheckIntervalUp";
-      this.buttonCheckIntervalUp.Size = new System.Drawing.Size(42, 23);
-      this.buttonCheckIntervalUp.TabIndex = 1;
-      this.buttonCheckIntervalUp.Text = "+1";
-      this.buttonCheckIntervalUp.UseVisualStyleBackColor = true;
-      this.buttonCheckIntervalUp.Click += new System.EventHandler(this.buttonCheckIntervalUp_Click);
+      this.ButtonCheckIntervalUp.Location = new System.Drawing.Point(89, 18);
+      this.ButtonCheckIntervalUp.Name = "ButtonCheckIntervalUp";
+      this.ButtonCheckIntervalUp.Size = new System.Drawing.Size(42, 23);
+      this.ButtonCheckIntervalUp.TabIndex = 1;
+      this.ButtonCheckIntervalUp.Text = "+1";
+      this.ButtonCheckIntervalUp.UseVisualStyleBackColor = true;
+      this.ButtonCheckIntervalUp.Click += new System.EventHandler(this.ButtonCheckIntervalUp_Click);
       // 
-      // labelCheckInterval
+      // LabelCheckInterval
       // 
-      this.labelCheckInterval.AutoSize = true;
-      this.labelCheckInterval.Location = new System.Drawing.Point(16, 23);
-      this.labelCheckInterval.Name = "labelCheckInterval";
-      this.labelCheckInterval.Size = new System.Drawing.Size(23, 13);
-      this.labelCheckInterval.TabIndex = 0;
-      this.labelCheckInterval.Text = "1 S";
+      this.LabelCheckInterval.AutoSize = true;
+      this.LabelCheckInterval.Location = new System.Drawing.Point(16, 23);
+      this.LabelCheckInterval.Name = "LabelCheckInterval";
+      this.LabelCheckInterval.Size = new System.Drawing.Size(23, 13);
+      this.LabelCheckInterval.TabIndex = 0;
+      this.LabelCheckInterval.Text = "1 S";
       // 
-      // labelConnectionCount
+      // LabelConnectionCount
       // 
-      this.labelConnectionCount.AutoSize = true;
-      this.labelConnectionCount.Location = new System.Drawing.Point(362, 3);
-      this.labelConnectionCount.Name = "labelConnectionCount";
-      this.labelConnectionCount.Size = new System.Drawing.Size(25, 13);
-      this.labelConnectionCount.TabIndex = 12;
-      this.labelConnectionCount.Text = "000";
+      this.LabelConnectionCount.AutoSize = true;
+      this.LabelConnectionCount.Location = new System.Drawing.Point(362, 3);
+      this.LabelConnectionCount.Name = "LabelConnectionCount";
+      this.LabelConnectionCount.Size = new System.Drawing.Size(25, 13);
+      this.LabelConnectionCount.TabIndex = 12;
+      this.LabelConnectionCount.Text = "000";
       // 
       // label6
       // 
@@ -146,41 +145,41 @@
       this.label6.TabIndex = 11;
       this.label6.Text = "Connection count";
       // 
-      // labelMaxMemUsed
+      // LabelMaxMemUsed
       // 
-      this.labelMaxMemUsed.AutoSize = true;
-      this.labelMaxMemUsed.Location = new System.Drawing.Point(129, 78);
-      this.labelMaxMemUsed.Name = "labelMaxMemUsed";
-      this.labelMaxMemUsed.Size = new System.Drawing.Size(25, 13);
-      this.labelMaxMemUsed.TabIndex = 10;
-      this.labelMaxMemUsed.Text = "000";
+      this.LabelMaxMemUsed.AutoSize = true;
+      this.LabelMaxMemUsed.Location = new System.Drawing.Point(129, 78);
+      this.LabelMaxMemUsed.Name = "LabelMaxMemUsed";
+      this.LabelMaxMemUsed.Size = new System.Drawing.Size(25, 13);
+      this.LabelMaxMemUsed.TabIndex = 10;
+      this.LabelMaxMemUsed.Text = "000";
       // 
-      // labelMemAllocated
+      // LabelMemAllocated
       // 
-      this.labelMemAllocated.AutoSize = true;
-      this.labelMemAllocated.Location = new System.Drawing.Point(129, 53);
-      this.labelMemAllocated.Name = "labelMemAllocated";
-      this.labelMemAllocated.Size = new System.Drawing.Size(25, 13);
-      this.labelMemAllocated.TabIndex = 9;
-      this.labelMemAllocated.Text = "000";
+      this.LabelMemAllocated.AutoSize = true;
+      this.LabelMemAllocated.Location = new System.Drawing.Point(129, 53);
+      this.LabelMemAllocated.Name = "LabelMemAllocated";
+      this.LabelMemAllocated.Size = new System.Drawing.Size(25, 13);
+      this.LabelMemAllocated.TabIndex = 9;
+      this.LabelMemAllocated.Text = "000";
       // 
-      // labelMemUsed
+      // LabelMemUsed
       // 
-      this.labelMemUsed.AutoSize = true;
-      this.labelMemUsed.Location = new System.Drawing.Point(129, 28);
-      this.labelMemUsed.Name = "labelMemUsed";
-      this.labelMemUsed.Size = new System.Drawing.Size(25, 13);
-      this.labelMemUsed.TabIndex = 8;
-      this.labelMemUsed.Text = "000";
+      this.LabelMemUsed.AutoSize = true;
+      this.LabelMemUsed.Location = new System.Drawing.Point(129, 28);
+      this.LabelMemUsed.Name = "LabelMemUsed";
+      this.LabelMemUsed.Size = new System.Drawing.Size(25, 13);
+      this.LabelMemUsed.TabIndex = 8;
+      this.LabelMemUsed.Text = "000";
       // 
-      // labelMemCurrent
+      // LabelMemCurrent
       // 
-      this.labelMemCurrent.AutoSize = true;
-      this.labelMemCurrent.Location = new System.Drawing.Point(129, 3);
-      this.labelMemCurrent.Name = "labelMemCurrent";
-      this.labelMemCurrent.Size = new System.Drawing.Size(25, 13);
-      this.labelMemCurrent.TabIndex = 7;
-      this.labelMemCurrent.Text = "000";
+      this.LabelMemCurrent.AutoSize = true;
+      this.LabelMemCurrent.Location = new System.Drawing.Point(129, 3);
+      this.LabelMemCurrent.Name = "LabelMemCurrent";
+      this.LabelMemCurrent.Size = new System.Drawing.Size(25, 13);
+      this.LabelMemCurrent.TabIndex = 7;
+      this.LabelMemCurrent.Text = "000";
       // 
       // label5
       // 
@@ -218,20 +217,19 @@
       this.label2.TabIndex = 3;
       this.label2.Text = "Mem current";
       // 
-      // label1
+      // Label1
       // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(265, 78);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(35, 13);
-      this.label1.TabIndex = 2;
-      this.label1.Text = "label1";
-      this.label1.Click += new System.EventHandler(this.label1_Click);
+      this.Label1.AutoSize = true;
+      this.Label1.Location = new System.Drawing.Point(265, 78);
+      this.Label1.Name = "Label1";
+      this.Label1.Size = new System.Drawing.Size(35, 13);
+      this.Label1.TabIndex = 2;
+      this.Label1.Text = "label1";
       // 
-      // timer1
+      // Timer1
       // 
-      this.timer1.Interval = 1000;
-      this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+      this.Timer1.Interval = 1000;
+      this.Timer1.Tick += new System.EventHandler(this.Timer1_Tick);
       // 
       // tabControl1
       // 
@@ -246,7 +244,7 @@
       // 
       // tabPageFirebirdData
       // 
-      this.tabPageFirebirdData.Controls.Add(this.listView1);
+      this.tabPageFirebirdData.Controls.Add(this.ListView1);
       this.tabPageFirebirdData.Location = new System.Drawing.Point(4, 22);
       this.tabPageFirebirdData.Name = "tabPageFirebirdData";
       this.tabPageFirebirdData.Padding = new System.Windows.Forms.Padding(3);
@@ -255,28 +253,28 @@
       this.tabPageFirebirdData.Text = "Dane Firebird";
       this.tabPageFirebirdData.UseVisualStyleBackColor = true;
       // 
-      // listView1
+      // ListView1
       // 
-      this.listView1.AutoArrange = false;
-      this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+      this.ListView1.AutoArrange = false;
+      this.ListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-      this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.listView1.FullRowSelect = true;
-      this.listView1.GridLines = true;
-      this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-      this.listView1.HideSelection = false;
-      this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-      this.listView1.LabelWrap = false;
-      this.listView1.Location = new System.Drawing.Point(3, 3);
-      this.listView1.MultiSelect = false;
-      this.listView1.Name = "listView1";
-      this.listView1.Size = new System.Drawing.Size(742, 318);
-      this.listView1.TabIndex = 2;
-      this.listView1.UseCompatibleStateImageBehavior = false;
-      this.listView1.View = System.Windows.Forms.View.Details;
+      this.ListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.ListView1.FullRowSelect = true;
+      this.ListView1.GridLines = true;
+      this.ListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+      this.ListView1.HideSelection = false;
+      this.ListView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem2});
+      this.ListView1.LabelWrap = false;
+      this.ListView1.Location = new System.Drawing.Point(3, 3);
+      this.ListView1.MultiSelect = false;
+      this.ListView1.Name = "ListView1";
+      this.ListView1.Size = new System.Drawing.Size(742, 318);
+      this.ListView1.TabIndex = 2;
+      this.ListView1.UseCompatibleStateImageBehavior = false;
+      this.ListView1.View = System.Windows.Forms.View.Details;
       // 
       // columnHeader1
       // 
@@ -334,26 +332,26 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label labelMaxMemUsed;
-        private System.Windows.Forms.Label labelMemAllocated;
-        private System.Windows.Forms.Label labelMemUsed;
-        private System.Windows.Forms.Label labelMemCurrent;
+        private System.Windows.Forms.Timer Timer1;
+        private System.Windows.Forms.Label Label1;
+        private System.Windows.Forms.Label LabelMaxMemUsed;
+        private System.Windows.Forms.Label LabelMemAllocated;
+        private System.Windows.Forms.Label LabelMemUsed;
+        private System.Windows.Forms.Label LabelMemCurrent;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelConnectionCount;
+        private System.Windows.Forms.Label LabelConnectionCount;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button buttonCheckIntervalDown;
-        private System.Windows.Forms.Button buttonCheckIntervalUp;
-        private System.Windows.Forms.Label labelCheckInterval;
+        private System.Windows.Forms.Button ButtonCheckIntervalDown;
+        private System.Windows.Forms.Button ButtonCheckIntervalUp;
+        private System.Windows.Forms.Label LabelCheckInterval;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPageFirebirdData;
 		private System.Windows.Forms.TabPage tabPageErrorLog;
-		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.ListView ListView1;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;

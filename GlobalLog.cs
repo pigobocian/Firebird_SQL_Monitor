@@ -9,33 +9,54 @@ namespace Firebird_SQL_Monitor
 {
   internal class GlobalLog
   {
-    private static ListBox listBox = null;
-    private static GlobalLog instance = null;
+    private static ListBox ListBox = null;
+    private static GlobalLog Instance = null;
+    private static int ErrorCount = 0;
+    private static int WarningCount = 0;
 
     // Prywatny konstruktor - singleton
     private GlobalLog() { }
 
     public static GlobalLog GetInstance()
     {
-      if (instance == null)
+      if (Instance == null)
       {
-        instance = new GlobalLog();
+        Instance = new GlobalLog();
       }
-      return instance;
+      return Instance;
     }
 
     public void SetListBox(ListBox lb)
     {
-      listBox = lb;
+      ListBox = lb;
     }
 
-    public static void LogMessage(string message)
+    public static void LogError(string message)
     {
-      if (listBox != null)
-      {
-        listBox.Items.Add(message);
-      }
+      ErrorCount++;
+
+      ListBox?.Items.Add("E: " + message);
     }
 
+    public static void LogWarning(string message)
+    {
+      WarningCount++;
+      ListBox?.Items.Add("W: " + message);
+    }
+
+    public static void LogInfo(string message)
+    {
+      ListBox?.Items.Add("I: " + message);
+    }
+
+    public static int GetErrorCount()
+    {
+      return ErrorCount;
+    } 
+
+    public static int GetWarningCount()
+    {
+      return WarningCount;
+    } 
   }
 }

@@ -6,14 +6,15 @@ namespace FirebirdSQLMonitor
 {
 	public class DBHelper
 	{
-		FbConnection fbConnection;
-		String connStr = "";
+		FbConnection FBConnection;
+		String ConnStr = "";
+		String ErrorMessage = "";
 
-		private static DBHelper instance = null;
+    private static DBHelper Instance = null;
 
     private DBHelper(Konfiguracja cfg)
 		{
-			connStr = "User=" + cfg.GetDBUserName() + ";" +
+			ConnStr = "User=" + cfg.GetDBUserName() + ";" +
 								"Password=" + cfg.GetDBPassword() + ";" +
 								"Database=" + cfg.GetDBName() + ";" +
 								"DataSource=" + cfg.GetDBHost() + ";" +
@@ -31,11 +32,11 @@ namespace FirebirdSQLMonitor
 		{
 			Konfiguracja configuration = Konfiguracja.GetInstance();
 
-      if (instance == null)
+      if (Instance == null)
 			{
-				instance = new DBHelper(configuration);
+				Instance = new DBHelper(configuration);
 			}
-			return instance;
+			return Instance;
     }
 
     public bool Connect()
@@ -43,18 +44,21 @@ namespace FirebirdSQLMonitor
 			bool result = false;
 			try
 			{
-				fbConnection = new FbConnection(connStr);
-				fbConnection.Open();
-				string dbgStr = fbConnection.ServerVersion;
+				FBConnection = new FbConnection(ConnStr);
+				FBConnection.Open();
+				string dbgStr = FBConnection.ServerVersion;
         result = IsOpen();
       }
 			catch (FbException e)
 			{
-        GlobalLog.LogMessage(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
+			ErrorMessage = e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message;
+
+        GlobalLog.LogError(ErrorMessage);
 			}
 			catch (Exception e)
 			{
-        GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
+				ErrorMessage = e.GetType().Name + " - " + e.Message;
+        GlobalLog.LogError(ErrorMessage);
 			}
 			
 			return result;
@@ -63,9 +67,9 @@ namespace FirebirdSQLMonitor
 		bool IsOpen()
 		{
 			bool result = false;
-			if (fbConnection != null)
+			if (FBConnection != null)
 			{
-				result = fbConnection.State == System.Data.ConnectionState.Open;
+				result = FBConnection.State == System.Data.ConnectionState.Open;
 			}
 			return result;
     }
@@ -74,15 +78,15 @@ namespace FirebirdSQLMonitor
 		{
 			try
 			{
-				fbConnection.Close();
+				FBConnection.Close();
 			}
 			catch (FbException e)
 			{
-        GlobalLog.LogMessage(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
+        GlobalLog.LogError(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
 			}
 			catch (Exception e)
 			{
-        GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
+        GlobalLog.LogError(e.GetType().Name + " - " + e.Message);
 			}
 		}
 
@@ -91,17 +95,22 @@ namespace FirebirdSQLMonitor
 			FbCommand fbCommand = null;
 			try
 			{
-				fbCommand = new FbCommand(sql, fbConnection);
+				fbCommand = new FbCommand(sql, FBConnection);
 			}
 			catch (FbException e)
 			{
-        GlobalLog.LogMessage(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
+        GlobalLog.LogError(e.GetType().Name + ", Error code: " + e.ErrorCode + " - " + e.Message);
 			}
 			catch (Exception e)
 			{
-        GlobalLog.LogMessage(e.GetType().Name + " - " + e.Message);
+        GlobalLog.LogError(e.GetType().Name + " - " + e.Message);
 			}
 			return fbCommand;
 		}
-	}
+
+		public string GetErrorMessage()
+		{
+			return ErrorMessage;
+    }	
+  }
 }
