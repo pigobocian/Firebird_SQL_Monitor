@@ -153,5 +153,28 @@ namespace FirebirdSQLMonitor
       LabelCheckInterval.Text = interval.ToString() + " sec";
     }
 
+    private void button1_Click_1(object sender, EventArgs e)
+    {
+      ConfigForm configForm = new ConfigForm();
+      DBHelper dbHelper = DBHelper.GetInstance();
+
+      if (configForm.ShowConfigDialog())
+      {
+        dbHelper.Close();
+
+        Konfiguracja konfiguracja = Konfiguracja.GetInstance();
+        konfiguracja.SetDBHost(configForm.GetHost());
+        konfiguracja.SetDBPort(configForm.GetPort());
+        konfiguracja.SetDBName(configForm.GetDatabase());
+        konfiguracja.SetDBUserName(configForm.GetUsername());
+        konfiguracja.SetDBPassword(configForm.GetPassword());
+        konfiguracja.SetDBEncoding(configForm.GetCharSet());
+        konfiguracja.SaveConfig();
+        
+        if (dbHelper.Connect()) Timer1.Enabled = true;
+        else
+          GlobalLog.LogError("Błąd połączenia z bazą: " + dbHelper.GetErrorMessage());
+      }
+    }
   }
 }

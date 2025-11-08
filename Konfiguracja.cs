@@ -112,6 +112,43 @@ namespace FirebirdSQLMonitor
       return this.ConfigPath;
     }
 
+    public void SetSQL(String sql)
+    {
+      this.SQL = sql;
+    } 
+
+    public void SetDBHost(String host)
+    {
+      this.DBHost = host;
+    } 
+
+    public void SetDBPort(int port)
+    {
+      this.DBPort = port;
+    }
+
+    public void SetDBName(String dbName)
+    {
+      this.DBFileName = dbName;
+    }
+
+    public void SetDBUserName(String username)
+    {
+      this.DBUsername = username;
+    }
+
+    public void SetDBPassword(String password)
+    {
+      this.DBPassword = password;
+    }
+
+    public void SetDBEncoding(String encoding)
+    {
+      this.DBEncoding = encoding;
+    }
+
+
+
     /// <summary>
     /// Zapsuje plik konfiguracyjny. Do nazwy pliku dodawana jest ścieżka 
     /// aktualnie uruchominej aplikacji
