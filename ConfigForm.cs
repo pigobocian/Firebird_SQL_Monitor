@@ -154,7 +154,8 @@ namespace Firebird_SQL_Monitor
       scintilla.Margins[0].Type = MarginType.Number;
 
       // Podświetlanie bieżącej linii
-      scintilla.CaretLineVisible = true;
+      //scintilla.CaretLineVisible = true;
+      scintilla.CaretLineBackColor = Color.White;
       scintilla.CaretLineBackColor = Color.FromArgb(240, 240, 255);
     }
 
