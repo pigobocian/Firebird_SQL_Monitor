@@ -34,6 +34,9 @@ namespace FirebirdSQLMonitor
     private String DBEncoding;
     private String ConfigPath;
 
+
+    private String QueryFile = "";
+
     public enum ConfigFileStatus
     {
       Created,
@@ -162,6 +165,13 @@ namespace FirebirdSQLMonitor
         var ini = new MyIniFile(ConfigPath);
         if (ini.Read())
         {
+          if (QueryFile != "")
+          {
+            // Zapisuję zapytanie do pliku
+            File.WriteAllText(QueryFile, SQL);
+            // W pliku ini zapisuję tylko nazwę pliku z zapytaniem
+            SQL = Path.GetFileName(QueryFile);
+          }
           ini.Add(INI_MAIN_SQL, SQL);
           ini.Add(INI_DBHOST, this.DBHost);
           ini.Add(INI_DBPORT, this.DBPort.ToString());
@@ -197,6 +207,7 @@ namespace FirebirdSQLMonitor
           SQL = Path.GetDirectoryName(ConfigPath) + "\\" + SQL;
           if (File.Exists(SQL))
           {
+            QueryFile = SQL;
             SQL = File.ReadAllText(SQL);
           }
 

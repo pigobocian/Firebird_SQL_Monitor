@@ -169,9 +169,14 @@ namespace FirebirdSQLMonitor
         konfiguracja.SetDBUserName(configForm.GetUsername());
         konfiguracja.SetDBPassword(configForm.GetPassword());
         konfiguracja.SetDBEncoding(configForm.GetCharSet());
+        konfiguracja.SetSQL(configForm.GetSQL());
         konfiguracja.SaveConfig();
         
-        if (dbHelper.Connect()) Timer1.Enabled = true;
+        if (dbHelper.Connect())
+        {
+          konfiguracja.LoadConfig();
+          Timer1.Enabled = true;
+        }
         else
           GlobalLog.LogError("Błąd połączenia z bazą: " + dbHelper.GetErrorMessage());
       }
